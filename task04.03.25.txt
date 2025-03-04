@@ -1,0 +1,36 @@
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+1.SORGU                                         
+------------------------------------------------
+SELECT FirstName, LastName, Salary
+FROM employees;
+
+From komutu ile hangi veri birimini kullanacagimi belirleyip select ile istedigim kolonlari cektim.
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+2.SORGU                                      
+------------------------------------------------
+SELECT DISTINCT departmentid
+FROM employees;
+
+DISTINCT komutu ile calisanlarin departmanid lerini 1 kez temsil edecek sekilde listeledim.
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+3.SORGU                                        
+------------------------------------------------
+SELECT * FROM employees
+WHERE departmentid = '1';
+
+WHERE komutu ile istedigim departmentid leri liseledim.(veriye gore IT ekibinin id'si 1.)
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+4.SORGU                                      
+------------------------------------------------
+SELECT FirstName, LastName, Salary
+FROM employees
+ORDER BY salary DESC;
+
+calısanları 6. sutun(maas sutunu) azalan olacak sekilde sıraladım.
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+5.SORGU                                        
+------------------------------------------------
+SELECT firstName || ' : ' || lastName AS tamisim, Salary
+FROM Employees;
+
+ ||(pipe) kullanarak employees icinden istedigim sutunları yan yana getirdim ve duzgun gorunmesi icin aralarına ':' koyup yeni sutunu "tamisim" olarak adlandırdım.
