@@ -1,0 +1,42 @@
+Fatura tablosunda, tüm sütunların NULL olduğu kayıtların sayısını hesapladık.
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+SELECT COUNT(*)
+FROM Invoice
+WHERE
+  invoice_id IS NULL AND
+  customer_id IS NULL AND
+  invoice_date IS NULL AND
+  billing_address IS NULL AND
+  billing_city IS NULL AND
+  billing_state IS NULL AND
+  billing_country IS NULL AND
+  billingpostal_code IS NULL AND
+  total IS NULL;
+-- Toplam Row: 1
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+Fatura tablosundaki faturaları listeleyerek, mevcut "total" değerini ve bu değerin iki katı olan "new_total" hesapladık.
+Sonuçları "new_total" sütununa göre azalan sırayla sıraladık.
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+SELECT 
+  invoice_id,
+  customer_id,
+  invoice_date,
+  billing_address,
+  billing_city,
+  billing_state,
+  billing_country,
+  billingpostal_code,
+  total AS old_total, -- Mevcut toplam değer
+  total * 2 AS new_total -- Yeni toplam değer (iki katı)
+FROM Invoice
+ORDER BY new_total DESC;
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ 2013 yılının Ağustos ayında oluşturulmuş faturalar için, "billing_address" sütununu ve bu adresin ilk üç ve son dört karakterini birleştirerek "Açık Adres" sütununu oluşturduk.
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+SELECT 
+  billing_address, -- Orijinal fatura adresi
+  LEFT(billing_address, 3) || RIGHT(billing_address, 4) AS "Açık Adres" -- Yeni birleştirilmiş adres
+FROM Invoice
+WHERE 
+  EXTRACT(YEAR FROM invoice_date) = 2013 AND 
+  EXTRACT(MONTH FROM invoice_date) = 8; 
