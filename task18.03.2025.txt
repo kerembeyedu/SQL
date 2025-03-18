@@ -1,3 +1,5 @@
+--------------------------1.SORGU----------------------------------
+
 Fatura tablosunda, tüm sütunların NULL olduğu kayıtların sayısını hesapladık.
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 SELECT COUNT(*)
@@ -13,7 +15,7 @@ WHERE
   billingpostal_code IS NULL AND
   total IS NULL;
 -- Toplam Row: 1
-&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+--------------------------2.SORGU----------------------------------
 Fatura tablosundaki faturaları listeleyerek, mevcut "total" değerini ve bu değerin iki katı olan "new_total" hesapladık.
 Sonuçları "new_total" sütununa göre azalan sırayla sıraladık.
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -30,6 +32,8 @@ SELECT
   total * 2 AS new_total -- Yeni toplam değer (iki katı)
 FROM Invoice
 ORDER BY new_total DESC;
+
+--------------------------3.SORGU----------------------------------
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
  2013 yılının Ağustos ayında oluşturulmuş faturalar için, "billing_address" sütununu ve bu adresin ilk üç ve son dört karakterini birleştirerek "Açık Adres" sütununu oluşturduk.
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
