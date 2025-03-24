@@ -1,0 +1,31 @@
+---------------------Sorgu-1---------------------
+
+SELECT SUM(total) AS faturalar_toplami --SUM ile total sütunundaki değerlerin toplamını aldık
+FROM invoice
+WHERE billing_country = 'USA' --WHERE ile billing_country sütunundan USA olanları çektik
+  AND EXTRACT(YEAR FROM invoice_date) = 2009; --ve de invoice_date'den sadece yılı aldık(2009)
+  
+--2009 yılı içinde ABD'deki müşterilere kesilen toplam fatura tutarını bulmuş olduk
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+---------------------Sorgu-2---------------------
+
+SELECT p.playlist_id, p.name AS playlist_name,t.track_id, t.name AS track_name
+FROM track AS t --track tablosunu, playlisttrack ve playlist tablosuna bağlıyoruz
+JOIN playlisttrack AS pt ON t.track_id = pt.track_id
+JOIN playlist AS p ON pt.playlist_id = p.playlist_id; --şarkı adlarını ve ID'lerini listeliyoruz
+
+--şarkıların hangi playlist'te olduğunu listelemiş olduk
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+---------------------Sorgu-3---------------------
+
+SELECT t.name AS track_name, 
+       ar.name AS artist_name, 
+       t.milliseconds
+FROM track AS t --track tablosunu album tablosuna ve artist tablosuna bağlıyoruz
+JOIN album AS al ON t.album_id = al.album_id
+JOIN artist AS ar ON al.artist_id = ar.artist_id
+WHERE al.title = 'Let There Be Rock' --Let There Be Rock adlı albümün şarkılarını çektik
+ORDER BY t.milliseconds DESC;
+
+--'Let There Be Rock' albümündeki şarkıları sanatçı bilgileri ve sürelerine göre (azalan) listelemiş olduk
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
